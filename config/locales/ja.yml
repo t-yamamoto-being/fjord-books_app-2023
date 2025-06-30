@@ -1,0 +1,31 @@
+ja:
+  helpers:
+    submit:
+      create: "%{model}を追加"
+      update: "%{model}を更新"
+  activerecord:
+    models:
+      book: "本"
+  common:
+    title: タイトル
+    memo: メモ
+    author: 著者
+    picture: 本の表紙
+  books:
+    index:
+      title: "本の一覧"
+      new_book: "新しい本"
+      show_this_book: "この本の詳細を表示"
+    new:
+      title: "本の追加"
+      create_book: "本を追加"
+    show:
+      edit_this_book: "この本を編集"
+      back_to_books: "本の一覧に戻る"
+      destroy_this_book: "この本を削除"
+      book_was_successfully_created: "本が正常に追加されました。"
+      book_was_successfully_updated: "本が正常に更新されました。"
+      book_was_successfully_destroyed: "本が正常に削除されました。"
+    edit:
+      title: "本の編集"
+      
