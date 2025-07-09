@@ -11,6 +11,9 @@
   </head>
 
   <body class="<%= params[:action] %>">
+    <% if user_signed_in? %>
+      <%= button_to t('devise.sessions.sign_out', default: 'サインアウト'), destroy_user_session_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

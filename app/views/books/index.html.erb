@@ -17,4 +17,6 @@
 
 <nav class="page-nav">
     <%= link_to t('views.common.new', name: Book.model_name.human.downcase), new_book_path %>
+    <%= link_to t('books.index.users', default: 'ユーザ一覧'), users_path %> |
+    <%= link_to t('books.index.profile', default: 'プロフィール'), profile_path %>
 </nav>

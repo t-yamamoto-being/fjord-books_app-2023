@@ -1,0 +1,9 @@
+<h1><%= t('users.profile.title', default: 'プロフィール') %></h1>
+<ul>
+  <li><strong><%= User.human_attribute_name(:email) %>:</strong> <%= @user.email %></li>
+  <li><strong><%= User.human_attribute_name(:postal_code) %>:</strong> <%= @user.postal_code %></li>
+  <li><strong><%= User.human_attribute_name(:address) %>:</strong> <%= @user.address %></li>
+  <li><strong><%= User.human_attribute_name(:introduction) %>:</strong> <%= @user.introduction %></li>
+</ul>
+<%= link_to t('users.profile.edit', default: 'プロフィールの編集'), edit_user_registration_path %> |
+<%= link_to t('users.profile.books', default: '本の一覧'), books_path %> 
