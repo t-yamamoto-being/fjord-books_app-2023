@@ -265,6 +265,11 @@ Devise.setup do |config|
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
+  # ==> Redirect configuration
+  # The path to redirect to after sign out.
+  config.sign_out_via = :delete
+  config.sign_out_all_scopes = true
+
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 

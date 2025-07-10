@@ -82,6 +82,6 @@ group :test do
 end
 
 gem 'carrierwave'
-gem 'kaminari'
 gem 'devise'
+gem 'kaminari'
 gem 'letter_opener_web', group: :development

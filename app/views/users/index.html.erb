@@ -24,4 +24,8 @@
   </tbody>
 </table>
 
+<div class="pagination">
+  <%= paginate @users %>
+</div>
+
 <%= link_to t('users.index.books', default: '本の一覧'), books_path %>

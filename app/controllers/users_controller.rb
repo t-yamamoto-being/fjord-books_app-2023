@@ -5,11 +5,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def index
-    @users = User.order(:id)
+    @users = User.order(:id).page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def profile
     @user = current_user

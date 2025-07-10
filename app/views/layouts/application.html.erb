@@ -13,6 +13,10 @@
   <body class="<%= params[:action] %>">
     <% if user_signed_in? %>
       <%= button_to t('devise.sessions.sign_out', default: 'サインアウト'), destroy_user_session_path, method: :delete %>
+      <%= link_to t('users.index.title', default: 'ユーザ一覧'), users_path %>
+      <% unless current_page?(profile_path) %>
+        | <%= link_to t('users.profile.title', default: 'プロフィール'), profile_path %>
+      <% end %>
     <% end %>
     <%= yield %>
   </body>
