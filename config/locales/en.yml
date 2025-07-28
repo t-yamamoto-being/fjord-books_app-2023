@@ -6,27 +6,27 @@ en:
   activerecord:
     models:
       book: "Book"
-  common:
-    title: Title
-    memo: Memo
-    author: Author
-    picture: Picture
-  books:
-    index:
-      title: "Book List"
-      new_book: "New Book"
-      show_this_book: "Show this book"
-    new:
-      title: "New Book"
-      create_book: "Create Book"
-    show:
-      edit_this_book: "Edit this book"
-      back_to_books: "Back to books"
-      destroy_this_book: "Destroy this book"
-      book_was_successfully_created: "Book was successfully created."
-      book_was_successfully_updated: "Book was successfully updated."
-      book_was_successfully_destroyed: "Book was successfully destroyed."
-    edit:
-      title: "Editing book"
+  attributes:
+    book:
+      title: Title
+      memo: Memo
+      author: Author
+      picture: Picture
+  views:
+    common:
+      show: "Show this %{model}"
+      edit: "Edit this %{model}"
+      destroy: "Destroy this %{model}"
+      create: "Create %{model}"
+      back_to_list: "Back to list"
+      title_index: "%{model} List"
+      title_edit: "Edit %{model}"
+      title_destroy: "Destroy %{model}"
+      title_create: "Create %{model}"
+  controllers:
+    messages:
+      created_successfully: "%{model} was successfully created."
+      updated_successfully: "%{model} was successfully updated."
+      destroyed_successfully: "%{model} was successfully destroyed."
 
 

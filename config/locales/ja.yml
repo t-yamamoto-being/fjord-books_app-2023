@@ -1,31 +1,31 @@
 ja:
   helpers:
     submit:
-      create: "%{model}を追加"
-      update: "%{model}を更新"
+      create: "%{model}の情報を追加"
+      update: "%{model}の情報を更新"
   activerecord:
     models:
       book: "本"
-  common:
-    title: タイトル
-    memo: メモ
-    author: 著者
-    picture: 本の表紙
-  books:
-    index:
-      title: "本の一覧"
-      new_book: "新しい本"
-      show_this_book: "この本の詳細を表示"
-    new:
-      title: "本の追加"
-      create_book: "本を追加"
-    show:
-      edit_this_book: "この本を編集"
-      back_to_books: "本の一覧に戻る"
-      destroy_this_book: "この本を削除"
-      book_was_successfully_created: "本が正常に追加されました。"
-      book_was_successfully_updated: "本が正常に更新されました。"
-      book_was_successfully_destroyed: "本が正常に削除されました。"
-    edit:
-      title: "本の編集"
+  attributes:
+    book:
+      title: タイトル
+      memo: メモ
+      author: 著者
+      picture: 本の表紙
+  views:
+    common:
+      show: "この%{model}の詳細を表示"
+      edit: "この%{model}を編集"
+      destroy: "この%{model}を削除"
+      create: "%{model}を追加"
+      back_to_list: "一覧に戻る"
+      title_index: "%{model}の一覧"
+      title_edit: "%{model}の編集"
+      title_destroy: "%{model}の削除"
+      title_create: "%{model}の追加"
+  controllers:
+    messages:
+      created_successfully: "%{model}が正常に追加されました。"
+      updated_successfully: "%{model}が正常に更新されました。"
+      destroyed_successfully: "%{model}が正常に削除されました。"
       
