@@ -6,12 +6,12 @@ ja:
   activerecord:
     models:
       book: "本"
-  attributes:
-    book:
-      title: タイトル
-      memo: メモ
-      author: 著者
-      picture: 本の表紙
+    attributes:
+      book:
+        title: タイトル
+        memo: メモ
+        author: 著者
+        picture: 本の表紙
   views:
     common:
       show: "この%{model}の詳細を表示"
@@ -28,4 +28,3 @@ ja:
       created_successfully: "%{model}が正常に追加されました。"
       updated_successfully: "%{model}が正常に更新されました。"
       destroyed_successfully: "%{model}が正常に削除されました。"
-      
