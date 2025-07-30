@@ -1,4 +1,4 @@
-<h1><%= t('users.index.title', default: 'ユーザ一覧') %></h1>
+<h1><%= t('views.common.title_index', name: User.model_name.human) %></h1>
 <table>
   <thead>
     <tr>
@@ -7,7 +7,6 @@
       <th><%= User.human_attribute_name(:postal_code) %></th>
       <th><%= User.human_attribute_name(:address) %></th>
       <th><%= User.human_attribute_name(:introduction) %></th>
-      <th><%= t('users.index.detail', default: '詳細') %></th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +17,7 @@
         <td><%= user.postal_code %></td>
         <td><%= user.address %></td>
         <td><%= user.introduction %></td>
-        <td><%= link_to t('users.index.detail', default: '詳細'), user_path(user) %></td>
+        <td><%= link_to t('views.common.title_show', name: User.model_name.human), user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +27,4 @@
   <%= paginate @users %>
 </div>
 
-<%= link_to t('users.index.books', default: '本の一覧'), books_path %>
+<%= link_to t('views.common.title_index', name: Book.model_name.human), books_path %>

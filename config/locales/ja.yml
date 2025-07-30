@@ -7,14 +7,6 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-    models:
-      user: ユーザ
-    attributes:
-      user:
-        email: メールアドレス
-        postal_code: 郵便番号
-        address: 住所
-        introduction: 自己紹介文
   date:
     abbr_day_names:
     - 日
@@ -195,13 +187,15 @@ ja:
       edit: "この%{name}を編集"
       destroy: "この%{name}を削除"
       new: "%{name}の新規作成"
-      back: "%{name}の一覧に戻る"
+      back: "%{name}に戻る"
       delete_confirm: よろしいですか？
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      title_show: "%{name}の詳細"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
+      profile: プロフィール
     pagination:
       first: '« 最初'
       last: '最後 »'

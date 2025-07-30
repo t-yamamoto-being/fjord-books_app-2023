@@ -1,9 +1,9 @@
-<h1><%= t('users.profile.title', default: 'プロフィール') %></h1>
+<h1><%= t('views.common.profile') %></h1>
 <ul>
   <li><strong><%= User.human_attribute_name(:email) %>:</strong> <%= @user.email %></li>
   <li><strong><%= User.human_attribute_name(:postal_code) %>:</strong> <%= @user.postal_code %></li>
   <li><strong><%= User.human_attribute_name(:address) %>:</strong> <%= @user.address %></li>
   <li><strong><%= User.human_attribute_name(:introduction) %>:</strong> <%= @user.introduction %></li>
 </ul>
-<%= link_to t('users.profile.edit', default: 'プロフィールの編集'), edit_user_registration_path %> |
-<%= link_to t('users.profile.books', default: '本の一覧'), books_path %>
+<%= link_to t('views.common.edit', name: User.model_name.human), edit_user_registration_path %> |
+<%= link_to t('views.common.title_index', name: Book.model_name.human), books_path %>
