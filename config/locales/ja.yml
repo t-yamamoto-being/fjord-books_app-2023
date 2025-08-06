@@ -196,6 +196,7 @@ ja:
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       profile: プロフィール
+      sign_out: サインアウト
     pagination:
       first: '« 最初'
       last: '最後 »'
