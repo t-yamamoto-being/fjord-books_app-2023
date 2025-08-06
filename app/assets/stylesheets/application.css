@@ -17,12 +17,6 @@
   text-align: center;
 }
 
-.user-avatar {
-  border-radius: 50%;
-  border: 2px solid #ddd;
-  object-fit: cover;
-}
-
 .default-avatar {
   width: 80px;
   height: 80px;

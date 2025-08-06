@@ -2,7 +2,9 @@
 
   <div class="user-icon">
     <% if user.icon.attached? %>
-      <%= image_tag user.icon, size: "80x80", class: "user-avatar" %>
+      <div class="current-icon">
+        <%= image_tag user.icon, size: "100x100" %>
+      </div>
     <% else %>
       <div class="default-avatar">No Image</div>
     <% end %>
