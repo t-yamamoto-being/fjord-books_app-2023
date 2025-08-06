@@ -15,15 +15,15 @@
   <%= render 'devise/registrations/profile_fields', f: f %>
 
   <div class="field">
-    <%= f.label :icon, "ユーザーアイコン" %><br />
+    <%= f.label :icon, t('.user_icon') %><br />
     <% if resource.icon.attached? %>
       <div class="current-icon">
         <%= image_tag resource.icon, size: "100x100" %>
-        <p>現在のアイコン</p>
+        <p><%= t('.current_icon') %></p>
       </div>
     <% end %>
     <%= f.file_field :icon, accept: "image/png,image/jpg,image/jpeg,image/gif" %>
-    <small>gif、jpg、png形式のみアップロード可能です</small>
+    <small><%= t('.icon_upload_help') %></small>
   </div>
 
   <div class="field">

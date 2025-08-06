@@ -14,7 +14,7 @@ class User < ApplicationRecord
     return unless icon.attached?
 
     unless icon.content_type.in?(%w[image/png image/jpg image/jpeg image/gif])
-      errors.add(:icon, 'はgif、jpg、png形式のみアップロード可能です')
+      errors.add(:icon, I18n.t('devise.registrations.edit.icon_upload_help'))
     end
   end
 end

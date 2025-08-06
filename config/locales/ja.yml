@@ -216,3 +216,6 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+        user_icon: "ユーザーアイコン"
+        current_icon: "現在のアイコン"
+        icon_upload_help: "gif、jpg、png形式のみアップロード可能です"
