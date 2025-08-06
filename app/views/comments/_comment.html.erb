@@ -1,0 +1,18 @@
+<div class="comment" id="<%= dom_id(comment) %>">
+  <div class="comment-header">
+    <span class="comment-author"><%= comment.user.name || comment.user.email %></span>
+    <span class="comment-date"><%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>
+  </div>
+  <div class="comment-content">
+    <%= comment.content %>
+  </div>
+  <% if user_signed_in? && comment.user == current_user %>
+    <div class="comment-actions">
+      <%= button_to t('views.comments.destroy'), 
+                    report_comment_path(@report, comment), 
+                    method: :delete, 
+                    class: 'btn btn-danger btn-sm',
+                    data: { confirm: t('views.comments.confirm_destroy') } %>
+    </div>
+  <% end %>
+</div> 

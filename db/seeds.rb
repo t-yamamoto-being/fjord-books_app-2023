@@ -16,6 +16,8 @@ end
 
 puts '実行中です。しばらくお待ちください...' # rubocop:disable Rails/Output
 
+# 外部キー制約があるため、依存関係の順序で削除
+Comment.destroy_all
 Book.destroy_all
 
 Book.transaction do # rubocop:disable Metrics/BlockLength

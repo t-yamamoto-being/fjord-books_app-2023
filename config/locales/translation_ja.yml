@@ -4,6 +4,7 @@ ja:
       book: 本
       user: ユーザ
       report: 日報
+      comment: コメント
 
     attributes:
       book:
@@ -22,3 +23,21 @@ ja:
         author: 投稿者名
         posted_date: 投稿日
         content: 内容
+      comment:
+        content: コメント内容
+
+  controllers:
+    comments:
+      notice_create: コメントを投稿しました
+      notice_destroy: コメントを削除しました
+      notice_unauthorized: このコメントを削除する権限がありません
+
+  views:
+    comments:
+      title: コメント
+      content: コメント内容
+      placeholder: コメントを入力してください
+      submit: 投稿
+      destroy: 削除
+      confirm_destroy: このコメントを削除しますか？
+      sign_in_required: コメントを投稿するにはログインが必要です

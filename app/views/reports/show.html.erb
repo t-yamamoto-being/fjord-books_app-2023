@@ -9,4 +9,22 @@
   <%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human.downcase)), reports_path %>
 
   <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
-</nav> 
+</nav>
+
+<div class="comments-section">
+  <h2><%= t('views.comments.title') %></h2>
+
+  <div class="comments-timeline">
+    <% @report.comments.order(created_at: :desc).each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="comment-form-container">
+      <%= render 'comments/form' %>
+    </div>
+  <% else %>
+    <p><%= t('views.comments.sign_in_required') %></p>
+  <% end %>
+</div> 
