@@ -13,8 +13,8 @@ class User < ApplicationRecord
   def acceptable_icon
     return unless icon.attached?
 
-    unless icon.content_type.in?(%w[image/png image/jpg image/jpeg image/gif])
-      errors.add(:icon, I18n.t('devise.registrations.edit.icon_upload_help'))
-    end
+    return if icon.content_type.in?(%w[image/png image/jpg image/jpeg image/gif])
+
+    errors.add(:icon, I18n.t('devise.registrations.edit.icon_upload_help'))
   end
 end
