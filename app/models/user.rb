@@ -3,4 +3,18 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_one_attached :icon
+
+  validate :acceptable_icon
+
+  private
+
+  def acceptable_icon
+    return unless icon.attached?
+
+    unless icon.content_type.in?(%w[image/png image/jpg image/jpeg image/gif])
+      errors.add(:icon, 'はgif、jpg、png形式のみアップロード可能です')
+    end
+  end
 end

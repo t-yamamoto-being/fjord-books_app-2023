@@ -1,6 +1,6 @@
 <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -13,6 +13,18 @@
   <% end %>
 
   <%= render 'devise/registrations/profile_fields', f: f %>
+
+  <div class="field">
+    <%= f.label :icon, "ユーザーアイコン" %><br />
+    <% if resource.icon.attached? %>
+      <div class="current-icon">
+        <%= image_tag resource.icon, size: "100x100" %>
+        <p>現在のアイコン</p>
+      </div>
+    <% end %>
+    <%= f.file_field :icon, accept: "image/png,image/jpg,image/jpeg,image/gif" %>
+    <small>gif、jpg、png形式のみアップロード可能です</small>
+  </div>
 
   <div class="field">
     <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
