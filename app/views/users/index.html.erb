@@ -1,0 +1,30 @@
+<h1><%= t('views.common.title_index', name: User.model_name.human) %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <th><%= User.human_attribute_name(:postal_code) %></th>
+      <th><%= User.human_attribute_name(:address) %></th>
+      <th><%= User.human_attribute_name(:introduction) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= user.postal_code %></td>
+        <td><%= user.address %></td>
+        <td><%= user.introduction %></td>
+        <td><%= link_to t('views.common.title_show', name: User.model_name.human), user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pagination">
+  <%= paginate @users %>
+</div>
+
+<%= link_to t('views.common.title_index', name: Book.model_name.human), books_path %>

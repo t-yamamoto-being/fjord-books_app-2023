@@ -1,0 +1,9 @@
+<h1><%= t('views.common.title_show', name: User.model_name.human) %></h1>
+<ul>
+  <li><strong><%= User.human_attribute_name(:email) %>:</strong> <%= @user.email %></li>
+  <li><strong><%= User.human_attribute_name(:postal_code) %>:</strong> <%= @user.postal_code %></li>
+  <li><strong><%= User.human_attribute_name(:address) %>:</strong> <%= @user.address %></li>
+  <li><strong><%= User.human_attribute_name(:introduction) %>:</strong> <%= @user.introduction %></li>
+</ul>
+
+<%= link_to t('views.common.title_index', name: Book.model_name.human), books_path %>

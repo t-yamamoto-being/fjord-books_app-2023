@@ -64,7 +64,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
+  gem 'devise-i18n'
   gem 'erb_lint', require: false
   gem 'faker'
   gem 'i18n_generators'
@@ -82,4 +82,6 @@ group :test do
 end
 
 gem 'carrierwave'
+gem 'devise'
 gem 'kaminari'
+gem 'letter_opener_web', group: :development
