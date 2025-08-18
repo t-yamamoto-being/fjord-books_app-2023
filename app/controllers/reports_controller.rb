@@ -22,6 +22,8 @@ class ReportsController < ApplicationController
   # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
+    # authorをログインユーザー名（設定されていない場合はメールアドレス）に設定
+    @report.author = current_user.name.present? ? current_user.name : current_user.email
 
     respond_to do |format|
       if @report.save
@@ -66,6 +68,6 @@ class ReportsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def report_params
-    params.require(:report).permit(:title, :author, :posted_date, :content)
+    params.require(:report).permit(:title, :content)
   end
 end 
