@@ -81,14 +81,14 @@ Report.destroy_all
 
 Report.transaction do
   users = User.all
-  30.times do |n|
+  30.times do |_n|
     user = users.sample
     Report.create!(
       title: Faker::Book.title,
       author: user.name,
       posted_date: Faker::Date.between(from: 1.year.ago, to: Date.current),
       content: Faker::Lorem.paragraph(sentence_count: 5),
-      user: user
+      user:
     )
   end
 end

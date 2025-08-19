@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :comments
+  has_many :comments, dependent: :nullify
   has_many :reports, dependent: :destroy
 
   has_one_attached :avatar do |attachable|
@@ -16,6 +16,6 @@ class User < ApplicationRecord
   private
 
   def nullify_comments
-    comments.update_all(user_id: nil)
+    comments.each { |comment| comment.update(user_id: nil) }
   end
 end

@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @commentable.comments.find(params[:id])
-    
+
     if @comment.user == current_user
       @comment.destroy
       redirect_to @commentable, notice: t('controllers.comments.notice_destroy')
@@ -51,4 +51,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
-end 
+end

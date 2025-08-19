@@ -13,4 +13,4 @@ class Comment < ApplicationRecord
   def user_avatar
     user&.avatar || nil
   end
-end 
+end

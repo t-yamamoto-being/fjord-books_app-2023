@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_report, only: %i[show edit update destroy]
   before_action :check_authorization, only: %i[edit update destroy]
 
@@ -25,7 +25,7 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.build(report_params)
     # authorをログインユーザー名（設定されていない場合はメールアドレス）に設定
-    @report.author = current_user.name.present? ? current_user.name : current_user.email
+    @report.author = (current_user.name.presence || current_user.email)
 
     respond_to do |format|
       if @report.save
@@ -70,13 +70,13 @@ class ReportsController < ApplicationController
 
   # 投稿者のみ編集・削除可能にする
   def check_authorization
-    unless @report.author?(current_user)
-      redirect_to @report, alert: t('controllers.reports.notice_unauthorized')
-    end
+    return if @report.author?(current_user)
+
+    redirect_to @report, alert: t('controllers.reports.notice_unauthorized')
   end
 
   # Only allow a list of trusted parameters through.
   def report_params
     params.require(:report).permit(:title, :content)
   end
-end 
+end

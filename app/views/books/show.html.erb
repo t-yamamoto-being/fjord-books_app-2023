@@ -13,7 +13,7 @@
 
 <div class="comments-section">
   <h2><%= t('views.comments.title') %></h2>
-  
+
   <div class="comments-timeline">
     <% @book.comments.order(created_at: :desc).each do |comment| %>
       <%= render 'comments/comment', comment: comment %>
