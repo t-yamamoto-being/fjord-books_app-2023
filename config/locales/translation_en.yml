@@ -31,6 +31,8 @@ en:
       notice_create: Comment posted successfully
       notice_destroy: Comment deleted successfully
       notice_unauthorized: You are not authorized to delete this comment
+    reports:
+      notice_unauthorized: You are not authorized to edit or delete this report
 
   views:
     comments:

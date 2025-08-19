@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_report, only: %i[show edit update destroy]
+  before_action :check_authorization, only: %i[edit update destroy]
 
   # GET /reports or /reports.json
   def index
@@ -21,7 +23,7 @@ class ReportsController < ApplicationController
 
   # POST /reports or /reports.json
   def create
-    @report = Report.new(report_params)
+    @report = current_user.reports.build(report_params)
     # authorをログインユーザー名（設定されていない場合はメールアドレス）に設定
     @report.author = current_user.name.present? ? current_user.name : current_user.email
 
@@ -64,6 +66,13 @@ class ReportsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_report
     @report = Report.find(params[:id])
+  end
+
+  # 投稿者のみ編集・削除可能にする
+  def check_authorization
+    unless @report.author?(current_user)
+      redirect_to @report, alert: t('controllers.reports.notice_unauthorized')
+    end
   end
 
   # Only allow a list of trusted parameters through.

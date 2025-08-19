@@ -31,6 +31,8 @@ ja:
       notice_create: コメントを投稿しました
       notice_destroy: コメントを削除しました
       notice_unauthorized: このコメントを削除する権限がありません
+    reports:
+      notice_unauthorized: この日報を編集・削除する権限がありません
 
   views:
     comments:
