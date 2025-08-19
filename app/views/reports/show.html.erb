@@ -26,7 +26,7 @@
 
   <% if user_signed_in? %>
     <div class="comment-form-container">
-      <%= render 'comments/form' %>
+      <%= render 'comments/form', commentable: @report %>
     </div>
   <% else %>
     <p><%= t('views.comments.sign_in_required') %></p>

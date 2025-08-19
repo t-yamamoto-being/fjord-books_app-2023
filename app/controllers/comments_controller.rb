@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       redirect_to @commentable, notice: t('controllers.comments.notice_create')
     else
       flash.now[:alert] = @comment.errors.full_messages.join(', ')
-      render 'reports/show'
+      render_commentable_show
     end
   end
 
@@ -30,7 +30,20 @@ class CommentsController < ApplicationController
   private
 
   def set_commentable
-    @commentable = Report.find(params[:report_id])
+    if params[:report_id]
+      @commentable = Report.find(params[:report_id])
+    elsif params[:book_id]
+      @commentable = Book.find(params[:book_id])
+    end
+  end
+
+  def render_commentable_show
+    case @commentable
+    when Report
+      render 'reports/show'
+    when Book
+      render 'books/show'
+    end
   end
 
   def comment_params

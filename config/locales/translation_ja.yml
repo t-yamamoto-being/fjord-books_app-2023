@@ -33,6 +33,8 @@ ja:
       notice_unauthorized: このコメントを削除する権限がありません
     reports:
       notice_unauthorized: この日報を編集・削除する権限がありません
+    books:
+      notice_unauthorized: この本を編集・削除する権限がありません
 
   views:
     comments:

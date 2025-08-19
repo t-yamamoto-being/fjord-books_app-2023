@@ -33,6 +33,8 @@ en:
       notice_unauthorized: You are not authorized to delete this comment
     reports:
       notice_unauthorized: You are not authorized to edit or delete this report
+    books:
+      notice_unauthorized: You are not authorized to edit or delete this book
 
   views:
     comments:
