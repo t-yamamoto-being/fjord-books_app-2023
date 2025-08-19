@@ -4,10 +4,10 @@ class Comment < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :commentable, polymorphic: true
 
-  validates :content, presence: { message: 'コメントを入力してください' }
+  validates :content, presence: { message: :comment_blank }
 
   def user_name
-    user&.name || '削除されたユーザー'
+    user&.name || I18n.t('views.common.deleted_user')
   end
 
   def user_avatar

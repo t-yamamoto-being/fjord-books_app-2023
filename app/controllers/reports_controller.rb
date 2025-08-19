@@ -5,26 +5,20 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
   before_action :check_authorization, only: %i[edit update destroy]
 
-  # GET /reports or /reports.json
   def index
     @reports = Report.order(:id).page(params[:page])
   end
 
-  # GET /reports/1 or /reports/1.json
   def show; end
 
-  # GET /reports/new
   def new
     @report = Report.new
   end
 
-  # GET /reports/1/edit
   def edit; end
 
-  # POST /reports or /reports.json
   def create
     @report = current_user.reports.build(report_params)
-    # authorをログインユーザー名（設定されていない場合はメールアドレス）に設定
     @report.author = (current_user.name.presence || current_user.email)
 
     respond_to do |format|
@@ -38,7 +32,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reports/1 or /reports/1.json
   def update
     respond_to do |format|
       if @report.update(report_params)
@@ -51,7 +44,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  # DELETE /reports/1 or /reports/1.json
   def destroy
     @report.destroy
 
@@ -63,19 +55,16 @@ class ReportsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_report
     @report = Report.find(params[:id])
   end
 
-  # 投稿者のみ編集・削除可能にする
   def check_authorization
     return if @report.author?(current_user)
 
     redirect_to @report, alert: t('controllers.reports.notice_unauthorized')
   end
 
-  # Only allow a list of trusted parameters through.
   def report_params
     params.require(:report).permit(:title, :content)
   end
