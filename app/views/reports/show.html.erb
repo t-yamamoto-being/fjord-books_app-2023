@@ -1,0 +1,34 @@
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
+
+<div class="show-item">
+  <%= render @report %>
+</div>
+
+<nav class="page-nav">
+  <% if user_signed_in? && @report.author?(current_user) %>
+    <%= link_to t('views.common.edit', name: Report.model_name.human.downcase), edit_report_path(@report) %> |
+  <% end %>
+  <%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human.downcase)), reports_path %>
+
+  <% if user_signed_in? && @report.author?(current_user) %>
+    <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
+  <% end %>
+</nav>
+
+<div class="comments-section">
+  <h2><%= t('views.comments.title') %></h2>
+
+  <div class="comments-timeline">
+    <% @report.comments.order(created_at: :desc).each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="comment-form-container">
+      <%= render 'comments/form', commentable: @report %>
+    </div>
+  <% else %>
+    <p><%= t('views.comments.sign_in_required') %></p>
+  <% end %>
+</div>

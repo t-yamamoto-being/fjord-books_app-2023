@@ -2,6 +2,9 @@ en:
   activerecord:
     models:
       book: Book
+      user: User
+      report: Report
+      comment: Comment
 
     attributes:
       book:
@@ -9,3 +12,36 @@ en:
         memo: Memo
         picture: Picture
         title: Title
+      user:
+        name: Name
+        postal_code: Postal Code
+        address: Address
+        self_introduction: Self Introduction
+        avatar: User Image
+      report:
+        title: Title
+        author: Author
+        posted_date: Posted Date
+        content: Content
+      comment:
+        content: Content
+
+  controllers:
+    comments:
+      notice_create: Comment posted successfully
+      notice_destroy: Comment deleted successfully
+      notice_unauthorized: You are not authorized to delete this comment
+    reports:
+      notice_unauthorized: You are not authorized to edit or delete this report
+    books:
+      notice_unauthorized: You are not authorized to edit or delete this book
+
+  views:
+    comments:
+      title: Comments
+      content: Comment content
+      placeholder: Enter your comment here
+      submit: Post
+      destroy: Delete
+      confirm_destroy: Are you sure you want to delete this comment?
+      sign_in_required: You need to sign in to post comments

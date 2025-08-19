@@ -7,6 +7,7 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+        comment_blank: 'コメントを入力してください'
   date:
     abbr_day_names:
     - 日
@@ -189,6 +190,7 @@ ja:
       new: "%{name}の新規作成"
       back: "%{name}の一覧に戻る"
       delete_confirm: よろしいですか？
+      deleted_user: 削除されたユーザー
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"

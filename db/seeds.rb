@@ -16,6 +16,8 @@ end
 
 puts '実行中です。しばらくお待ちください...' # rubocop:disable Rails/Output
 
+# 外部キー制約があるため、依存関係の順序で削除
+Comment.destroy_all
 Book.destroy_all
 
 Book.transaction do # rubocop:disable Metrics/BlockLength
@@ -73,6 +75,22 @@ User.order(:id).each.with_index(1) do |user, n|
   number = rand(1..6)
   image_path = Rails.root.join("db/seeds/avatar-#{number}.png")
   user.avatar.attach(io: File.open(image_path), filename: 'avatar.png')
+end
+
+Report.destroy_all
+
+Report.transaction do
+  users = User.all
+  30.times do |_n|
+    user = users.sample
+    Report.create!(
+      title: Faker::Book.title,
+      author: user.name,
+      posted_date: Faker::Date.between(from: 1.year.ago, to: Date.current),
+      content: Faker::Lorem.paragraph(sentence_count: 5),
+      user:
+    )
+  end
 end
 
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output

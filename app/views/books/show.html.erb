@@ -10,3 +10,21 @@
 
   <%= button_to t('views.common.destroy', name: Book.model_name.human.downcase), @book, method: :delete %>
 </nav>
+
+<div class="comments-section">
+  <h2><%= t('views.comments.title') %></h2>
+
+  <div class="comments-timeline">
+    <% @book.comments.order(created_at: :desc).each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="comment-form-container">
+      <%= render 'comments/form', commentable: @book %>
+    </div>
+  <% else %>
+    <p><%= t('views.comments.sign_in_required') %></p>
+  <% end %>
+</div>

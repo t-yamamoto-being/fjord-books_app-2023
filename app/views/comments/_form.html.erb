@@ -1,0 +1,17 @@
+<% comment = @comment || Comment.new %>
+<%= form_with(model: [commentable, comment], local: true, class: 'comment-form') do |form| %>
+  <div class="form-group">
+    <%= form.label :content, t('views.comments.content'), class: 'form-label' %>
+    <%= form.text_area :content, class: 'form-control', rows: 3, placeholder: t('views.comments.placeholder') %>
+    <% if comment.errors.any? %>
+      <div class="error-messages">
+        <% comment.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger"><%= message %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="form-actions">
+    <%= form.submit t('views.comments.submit'), class: 'btn btn-primary' %>
+  </div>
+<% end %>

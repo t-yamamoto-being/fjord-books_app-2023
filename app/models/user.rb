@@ -4,7 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :comments, dependent: :nullify
+  has_many :reports, dependent: :destroy
+
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [150, 150]
+  end
+
+  before_destroy :nullify_comments
+
+  private
+
+  def nullify_comments
+    comments.each { |comment| comment.update(user_id: nil) }
   end
 end
