@@ -1,12 +1,12 @@
 <div class="comment" id="<%= dom_id(comment) %>">
   <div class="comment-header">
-    <span class="comment-author"><%= comment.user.name || comment.user.email %></span>
+    <span class="comment-author"><%= comment.user_name %></span>
     <span class="comment-date"><%= comment.created_at.in_time_zone("Tokyo").strftime("%Y年%m月%d日 %H:%M") %></span>
   </div>
   <div class="comment-content">
     <%= comment.content %>
   </div>
-  <% if user_signed_in? && comment.user == current_user %>
+  <% if user_signed_in? && comment.user == current_user && comment.user.present? %>
     <div class="comment-actions">
       <% if comment.commentable.is_a?(Report) %>
         <%= button_to t('views.comments.destroy'), 
