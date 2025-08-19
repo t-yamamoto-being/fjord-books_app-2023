@@ -40,8 +40,10 @@ class CommentsController < ApplicationController
   def render_commentable_show
     case @commentable
     when Report
+      @report = @commentable
       render 'reports/show'
     when Book
+      @book = @commentable
       render 'books/show'
     end
   end
