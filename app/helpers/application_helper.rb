@@ -16,6 +16,32 @@ module ApplicationHelper
   end
 
   def format_content(content)
-    safe_join(content.split("\n"), tag.br)
+    return '' if content.blank?
+
+    escaped_content = ERB::Util.html_escape(content)
+
+    processed_urls = Set.new
+    
+    content_with_links = escaped_content.gsub(%r{(https?://[^/]*)?/reports/(\d+)}i) do |match|
+      next match if processed_urls.include?(match)
+      
+      report_id = $2
+      if Report.exists?(report_id)
+        processed_urls.add(match)
+        %(<a href="/reports/#{report_id}">#{match}</a>)
+      else
+        match
+      end
+    end
+      
+    content_with_links = content_with_links.gsub(%r{(https?://[^\s<>"{}|\\^`\[\]]+)}i) do |match|
+      if match.match?(%r{/reports/\d+})
+        match
+      else
+        %(<a class="external-link" href="#{match}" target="_blank" rel="noopener noreferrer">#{match}</a>)
+      end
+    end
+
+    content_with_links.split("\n").map { |line| line.presence || '<br>' }.join.html_safe
   end
 end

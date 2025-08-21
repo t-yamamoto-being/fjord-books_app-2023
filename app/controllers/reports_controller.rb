@@ -8,7 +8,8 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id])
+    @report = Report.includes(:user).find(params[:id])
+    @referenced_by_reports = @report.referenced_by_reports.includes(:user)
   end
 
   # GET /reports/new

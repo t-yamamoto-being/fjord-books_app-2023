@@ -4,6 +4,21 @@
   <%= render @report %>
 </div>
 
+<% if @referenced_by_reports.any? %>
+  <div class="referenced-reports">
+    <h3><%= t('views.common.referenced_reports', name: Report.model_name.human.downcase) %></h3>
+    <div class="referenced-reports-list">
+      <% @referenced_by_reports.each do |referencing_report| %>
+        <div class="referencing-report">
+          <%= link_to referencing_report.title, report_path(referencing_report) %>
+          <span class="referencing-user">by <%= referencing_report.user.name_or_email %></span>
+          <span class="referencing-date"><%= l referencing_report.created_on %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <%= render 'shared/comments', commentable: @report %>
 
 <nav class="page-nav">
