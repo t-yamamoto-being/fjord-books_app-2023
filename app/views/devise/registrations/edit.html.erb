@@ -1,6 +1,6 @@
 <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -13,6 +13,18 @@
   <% end %>
 
   <%= render 'devise/registrations/profile_fields', f: f %>
+
+  <div class="field">
+    <%= f.label :icon, t('.user_icon') %><br />
+    <% if resource.icon.attached? %>
+      <div class="current-icon">
+        <%= image_tag resource.icon, size: "100x100" %>
+        <p><%= t('.current_icon') %></p>
+      </div>
+    <% end %>
+    <%= f.file_field :icon, accept: "image/png,image/jpg,image/jpeg,image/gif" %>
+    <small><%= t('.icon_upload_help') %></small>
+  </div>
 
   <div class="field">
     <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
@@ -38,10 +50,6 @@
   </div>
 <% end %>
 
-<h3><%= t('.cancel_my_account') %></h3>
+<h2><%= t('.cancel_my_account') %></h3>
 
-<div><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { turbo_confirm: t('.are_you_sure') }, method: :delete %></div>
-
-<nav class="page-nav">
-  <%= link_to t('devise.shared.links.back'), :back %>
-</nav>
+<div><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { turbo_confirm: t('.are_you_sure') }, method: :delete %></div>

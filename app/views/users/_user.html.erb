@@ -1,5 +1,15 @@
 <div id="<%= dom_id user %>">
 
+  <div class="user-icon">
+    <% if user.icon.attached? %>
+      <div class="current-icon">
+        <%= image_tag user.icon, size: "100x100" %>
+      </div>
+    <% else %>
+      <div class="default-avatar">No Image</div>
+    <% end %>
+  </div>
+
   <p>
     <strong><%= User.human_attribute_name(:email) %>:</strong>
     <%= user.email %>
