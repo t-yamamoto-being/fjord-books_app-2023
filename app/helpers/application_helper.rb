@@ -18,10 +18,13 @@ module ApplicationHelper
   def format_content(content)
     return '' if content.blank?
 
-    escaped_content = ERB::Util.html_escape(content)
-    content_with_links = process_report_links(escaped_content)
+    content_with_breaks = format_lines_with_breaks(content)
+
+    content_with_links = process_report_links(content_with_breaks)
+
     content_with_links = process_external_links(content_with_links)
-    format_lines_with_breaks(content_with_links)
+
+    sanitize(content_with_links, tags: %w[a br], attributes: %w[href class target rel])
   end
 
   private
@@ -53,6 +56,7 @@ module ApplicationHelper
   end
 
   def format_lines_with_breaks(content)
+    # 改行を<br>タグに変換する前に、既存のHTMLタグを保護
     content.split("\n").map { |line| line.presence || '<br>' }.join
   end
 end
