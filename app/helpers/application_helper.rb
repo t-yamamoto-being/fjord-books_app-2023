@@ -19,13 +19,20 @@ module ApplicationHelper
     return '' if content.blank?
 
     escaped_content = ERB::Util.html_escape(content)
+    content_with_links = process_report_links(escaped_content)
+    content_with_links = process_external_links(content_with_links)
+    format_lines_with_breaks(content_with_links)
+  end
 
+  private
+
+  def process_report_links(content)
     processed_urls = Set.new
-    
-    content_with_links = escaped_content.gsub(%r{(https?://[^/]*)?/reports/(\d+)}i) do |match|
+
+    content.gsub(%r{(https?://[^/]*)?/reports/(\d+)}i) do |match|
       next match if processed_urls.include?(match)
-      
-      report_id = $2
+
+      report_id = ::Regexp.last_match(2)
       if Report.exists?(report_id)
         processed_urls.add(match)
         %(<a href="/reports/#{report_id}">#{match}</a>)
@@ -33,15 +40,19 @@ module ApplicationHelper
         match
       end
     end
-      
-    content_with_links = content_with_links.gsub(%r{(https?://[^\s<>"{}|\\^`\[\]]+)}i) do |match|
+  end
+
+  def process_external_links(content)
+    content.gsub(%r{(https?://[^\s<>"{}|\\^`\[\]]+)}i) do |match|
       if match.match?(%r{/reports/\d+})
         match
       else
         %(<a class="external-link" href="#{match}" target="_blank" rel="noopener noreferrer">#{match}</a>)
       end
     end
+  end
 
-    content_with_links.split("\n").map { |line| line.presence || '<br>' }.join.html_safe
+  def format_lines_with_breaks(content)
+    content.split("\n").map { |line| line.presence || '<br>' }.join
   end
 end

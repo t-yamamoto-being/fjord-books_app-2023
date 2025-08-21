@@ -16,7 +16,7 @@ class Report < ApplicationRecord
   end
 
   def referenced_report_ids
-    url_pattern = /\/reports\/(\d+)/
+    url_pattern = %r{/reports/(\d+)}
     matches = content.scan(url_pattern)
     matches.flatten.map(&:to_i).uniq
   end
@@ -28,6 +28,6 @@ class Report < ApplicationRecord
   private
 
   def referenced_by_report_ids
-    Report.where("content LIKE ?", "%/reports/#{id}%").pluck(:id)
+    Report.where('content LIKE ?', "%/reports/#{id}%").pluck(:id)
   end
 end
