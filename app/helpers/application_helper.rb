@@ -16,6 +16,47 @@ module ApplicationHelper
   end
 
   def format_content(content)
-    safe_join(content.split("\n"), tag.br)
+    return '' if content.blank?
+
+    content_with_breaks = format_lines_with_breaks(content)
+
+    content_with_links = process_report_links(content_with_breaks)
+
+    content_with_links = process_external_links(content_with_links)
+
+    sanitize(content_with_links, tags: %w[a br], attributes: %w[href class target rel])
+  end
+
+  private
+
+  def process_report_links(content)
+    processed_urls = Set.new
+
+    content.gsub(%r{(https?://[^/]*)?/reports/(\d+)}i) do |match|
+      next match if processed_urls.include?(match)
+
+      report_id = ::Regexp.last_match(2)
+      if Report.exists?(report_id)
+        processed_urls.add(match)
+        %(<a href="/reports/#{report_id}">#{match}</a>)
+      else
+        match
+      end
+    end
+  end
+
+  def process_external_links(content)
+    content.gsub(%r{(https?://[^\s<>"{}|\\^`\[\]]+)}i) do |match|
+      if match.match?(%r{/reports/\d+})
+        match
+      else
+        %(<a class="external-link" href="#{match}" target="_blank" rel="noopener noreferrer">#{match}</a>)
+      end
+    end
+  end
+
+  def format_lines_with_breaks(content)
+    # 改行を<br>タグに変換する前に、既存のHTMLタグを保護
+    content.split("\n").map { |line| line.presence || '<br>' }.join
   end
 end

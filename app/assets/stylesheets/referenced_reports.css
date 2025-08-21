@@ -1,0 +1,76 @@
+.referenced-reports {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.referenced-reports h3 {
+  margin: 0 0 15px 0;
+  color: #495057;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.referenced-reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.referencing-report {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.referencing-report a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.referencing-report a:hover {
+  text-decoration: underline;
+}
+
+.referencing-user {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.referencing-date {
+  color: #6c757d;
+  font-size: 0.9em;
+  margin-left: auto;
+}
+
+.external-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px dotted #007bff;
+}
+
+.external-link:hover {
+  text-decoration: underline;
+  border-bottom: 1px solid #007bff;
+}
+
+@media (max-width: 768px) {
+  .referencing-report {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .referencing-date {
+    margin-left: 0;
+  }
+}
